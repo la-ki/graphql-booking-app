@@ -40,7 +40,7 @@ const transformEvent = event => {
   return {
     ...event._doc,
     _id: event.id,
-    date: new Date(event._doc.date).toISOString(),
+    date: dateToString(event._doc.date),
     creator: user.bind(this, event.creator)
   };
 };
