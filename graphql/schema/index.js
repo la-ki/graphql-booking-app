@@ -60,4 +60,4 @@ schema {
   query: RootQuery
   mutation: RootMutation
 }
-`)
+`);

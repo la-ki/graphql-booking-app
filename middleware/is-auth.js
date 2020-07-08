@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     req.isAuth = false;
     return next();
   }
-  const token = authHeader.split(' '[1]);
+  const token = authHeader.split(' ')[1];
   if (!token || token === '') {
     req.isAuth = false;
     return next();
@@ -16,11 +16,14 @@ module.exports = (req, res, next) => {
     decodedToken = jwt.verify(token, 'michaeljackson');
   } catch (err) {
     req.isAuth = false;
+    return next();
   }
 
   if (!decodedToken) {
-    req.isAuth = true;
-    req.userId = decodedToken.userId;
-    next();
+    req.isAuth = false;
+    return next();
   }
-}
+  req.isAuth = true;
+  req.userId = decodedToken.userId;
+  next();
+};
