@@ -1,5 +1,7 @@
+// Event and User Models
 const Event = require('../../models/event');
 const User = require('../../models/user');
+
 const {transformEvent} = require('./merge');
 
 module.exports = {

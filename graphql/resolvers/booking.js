@@ -1,5 +1,7 @@
+// User and Event Models
 const Booking = require('../../models/booking');
 const Event = require('../../models/event');
+
 const { transformEvent, transformBooking } = require('./merge');
 
 module.exports = {
@@ -22,7 +24,7 @@ module.exports = {
     }
     const fetchedEvent = await Event.findOne({ _id: args.eventId });
     const booking = new Booking({
-      user: '5f039f8fe94b1b2fc03b3b0a',
+      user: req.userId,
       event: fetchedEvent
     });
     const result = await booking.save();

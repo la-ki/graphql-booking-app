@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
-const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
+
+// User model
+const User = require('../../models/user');
+
 
 module.exports = {
   createUser: async args => {
@@ -21,7 +24,11 @@ module.exports = {
 
       const result = await user.save();
 
-      return { ...result._doc, password: null, _id: result.id };
+      return {
+        ...result._doc,
+        password: null,
+        _id: result.id
+      };
     } catch (err) {
       throw err;
     }
@@ -41,10 +48,10 @@ module.exports = {
         , 'michaeljackson'
         , { expiresIn: '1h' }
       );
-      return {
-        userId: user.id,
-        token: token,
-        tokenExpiration: 1
-      }
+    return {
+      userId: user.id,
+      token: token,
+      tokenExpiration: 1
+    }
   }
 };

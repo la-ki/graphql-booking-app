@@ -1,5 +1,7 @@
+// Event and User Models
 const Event = require('../../models/event');
 const User = require('../../models/user');
+// Date helper
 const {dateToString} = require('../../helpers/date');
 
 const events = async eventIds => {
@@ -53,7 +55,7 @@ const transformBooking = booking => {
     event: singleEvent.bind(this, booking._doc.event),
     createdAt: dateToString(booking._doc.createdAt),
     updatedAt: dateToString(booking._doc.updatedAt)
-  }
+  };
 };
 
 exports.transformEvent = transformEvent;
